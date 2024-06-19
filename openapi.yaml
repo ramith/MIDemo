@@ -1,0 +1,50 @@
+openapi: 3.0.1
+info:
+  title: KYC Status Masking Proxy API
+  description: API for masking KYC status
+  version: 1.0.0
+servers:
+  - url: http://localhost:8290/services/KYCStatusMaskingProxy
+paths:
+  /Customer/{customerID}:
+    get:
+      summary: Get Customer Information
+      description: Retrieves customer information and masks the KYC status.
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1"
+          description: ID of the customer to retrieve information for.
+      responses:
+        '200':
+          description: Successful response with masked KYC status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId:
+                    type: string
+                    example: "1"
+                  firstName:
+                    type: string
+                    example: "John"
+                  lastName:
+                    type: string
+                    example: "Doe"
+                  kycStatus:
+                    type: string
+                    example: "xxxxxx"
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
