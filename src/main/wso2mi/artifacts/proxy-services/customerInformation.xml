@@ -1,9 +1,10 @@
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="KYCStatusMaskingProxy" startOnLoad="true" transports="http">
     <target>
         <inSequence>
+            <log category="INFO" level="full"/>
             <send>
                 <endpoint>
-                    <address uri="https://08bd1175-7029-4caf-a11b-10d047fed4f7-dev.e1-us-east-azure.choreoapis.dev/pdcsharp/customerapicsharp/v1.0/Customer/1"/>
+                    <http method="get" uri-template="https://08bd1175-7029-4caf-a11b-10d047fed4f7-dev.e1-us-east-azure.choreoapis.dev/pdcsharp/customerapicsharp/v1.0/Customer/1"/>
                 </endpoint>
             </send>
         </inSequence>
