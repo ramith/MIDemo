@@ -1,21 +1,26 @@
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="KYCStatusMaskingProxy" startOnLoad="true" transports="http">
     <target>
         <inSequence>
-            <log category="INFO" level="full"/>
+			<log category="INFO" level="full"/>
+			<log category="INFO" level="full"/>
+            <property name="endpointUrl" expression="get-property('system', 'CUSTOMER_API_ENDPOINT')" scope="default" type="STRING"/>
+            <log category="INFO" level="full">
+                <property expression="get-property('endpointUrl')" name="endpointUrl"/>
+			</log>
             <send>
                 <endpoint>
-                    <http method="get" uri-template="https://08bd1175-7029-4caf-a11b-10d047fed4f7-dev.e1-us-east-azure.choreoapis.dev/pdcsharp/customerapicsharp/v1.0/Customer/1"/>
-                </endpoint>
-            </send>
-        </inSequence>
+                    <http method="get" uri-template="${endpointUrl}"/>
+				</endpoint>
+			</send>
+		</inSequence>
         <outSequence>
             <property name="modifiedKycStatus" value="xxxxxx" scope="default" type="STRING"/>
             <enrich>
                 <source clone="true" property="modifiedKycStatus" type="property"/>
                 <target action="replace" xpath="json-eval($.kycStatus)"/>
-            </enrich>
+			</enrich>
             <log category="INFO" level="full"/>
             <send/>
-        </outSequence>
+		</outSequence>
     </target>
 </proxy>
