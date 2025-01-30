@@ -1,0 +1,12 @@
+schemaVersion: "1.1"
+endpoints:
+    - name: kyc-status-masking-proxy-api-1f8
+      displayName: KYC Status Masking Proxy API
+      service:
+        basePath: /services/KYCStatusMaskingProxy
+        port: 8290
+      type: REST
+      networkVisibilities:
+        - Project
+        - Public
+      schemaFilePath: openapi.yaml
