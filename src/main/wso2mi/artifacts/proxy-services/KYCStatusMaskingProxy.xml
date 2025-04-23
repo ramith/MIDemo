@@ -4,7 +4,7 @@
 			<log category="INFO" level="full"/>
             <send>
                 <endpoint>
-                    <http method="get" uri-template="https://08bd1175-7029-4caf-a11b-10d047fed4f7-dev.e1-us-east-azure.choreoapis.dev/ria/customer-api-ria/v1.0/customer/1"/>
+                    <http method="get" uri-template="https://ab14dad3-e896-4036-9df9-110888ad134f-dev.e1-us-east-azure.choreoapis.dev/customer-util-api/customer-util-api/v1.0/customer/1"/>
                 </endpoint>
             </send>
 		</inSequence>
